@@ -7,7 +7,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Alert from 'react-bootstrap/Alert';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Form, FormControl, Button}   from 'react-bootstrap';
 
 
 class AdruleDashboard extends React.Component {
