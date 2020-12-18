@@ -7,6 +7,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Alert from 'react-bootstrap/Alert';
+import { Container } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap'
 
 
 class AdruleDashboard extends React.Component {
@@ -77,8 +79,16 @@ class AdruleDashboard extends React.Component {
   render() {
       return (
           
-          <main className="d-flex justify-content-center my-4">
-            
+          <Container>
+            <div>
+            <Navbar bg="dark" variant="dark">
+              <Navbar.Brand href="#home">ChalkingCode</Navbar.Brand>
+              <Nav className="mr-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="https://github.com/ChalkingCode/React-App-Yara-Intel-">Code</Nav.Link>
+                </Nav>
+                </Navbar>
+            </div>
             <Alert variant="success">
               <Alert.Heading>Yara Intel</Alert.Heading>
               <p>
@@ -123,7 +133,7 @@ class AdruleDashboard extends React.Component {
   from your own Python scripts with the yara-python extension.
   </p>
 </Alert>
-              <div  className="col-5">
+<div>
                   <AdruleList
                       adrules={this.state.adrules}
                       onDeleteClick={this.deleteAdrule}
@@ -133,7 +143,8 @@ class AdruleDashboard extends React.Component {
                       onAdruleCreate={this.createNewAdrule}
                   />
               </div>
-          </main>
+              </Container>
+          
       )
   }
 }
@@ -301,7 +312,7 @@ class AdruleForm extends React.Component {
             Rule
           </label>
           <textarea className="form-control" placeholder="Adrule Rule"
-            rows="5" value={this.state.description}
+            rows="5" value={this.state.rule}
             onChange={this.handleRuleUpdate}
           >
             {this.state.rule}
