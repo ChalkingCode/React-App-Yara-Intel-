@@ -134,8 +134,7 @@ updateAdrule = (newAdrule) => {
 <div>
                   <AdruleList
                       adrules={this.state.adrules}
-                      onDeleteClick={this.deleteAdrule}
-                      onUpdateClick={this.updateAdrule}
+                      
                   />
                   <ToggleableAdruleForm
                       onAdruleCreate={this.createNewAdrule}
@@ -157,8 +156,7 @@ class AdruleList extends React.Component {
         author={adrule.author}
         description={adrule.description}
         rule={adrule.rule}
-        onDeleteClick={this.props.onDeleteClick}
-        onUpdateClick={this.props.onUpdateClick}
+        
       ></EditableAdrule>
     ));
     return (
@@ -179,9 +177,7 @@ class EditableAdrule extends React.Component {
   leaveEditMode = () => {
     this.setState({inEditMode: false});
   }
-  handleDelete = () => {
-    this.props.onDeleteClick(this.props.id);
-  }
+  
   handleUpdate = (adrule) => {
     this.leaveEditMode()
     adrule.id = this.props.id;
@@ -208,8 +204,7 @@ class EditableAdrule extends React.Component {
           author={this.props.author}
           description={this.props.description}
           rule={this.props.rule}
-          onEditClick={this.enterEditMode}
-          onDeleteClick={this.handleDelete}
+          
         />
       )
     }
@@ -229,8 +224,6 @@ class Adrule extends React.Component {
             <strong>Title: </strong>{this.props.title}
           </span>
           <div>
-            <span onClick={this.props.onEditClick} className="mr-2"><FontAwesomeIcon icon={faEdit} /></span>
-            <span onClick={this.props.onDeleteClick}><FontAwesomeIcon icon={faTrash} /></span>
           </div>
         </div>
         <div className="card-body">
