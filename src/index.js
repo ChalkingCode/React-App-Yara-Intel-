@@ -12,70 +12,67 @@ import { Navbar, Nav } from 'react-bootstrap'
 
 
 class AdruleDashboard extends React.Component {
-    state = {
-        adrules: [
-            {
-                id: 1,
-                title: 'silent banker',
-                author: 'ChalkingCode',
-                description: `An example of a yara rule`,
-                rule: `rule silent_banker : banker
-                &rbrace;
-                meta:
-                
-                description = "This is just an example"
-                threat_level = 3
-                in_the_wild = true
-                strings:
-                
-                $a = &rbrace;6A 40 68 00 30 00 00 6A 14 8D 91&rbrace;
-                $b = &rbrace;8D 4D B0 2B C1 83 C0 27 99 6A 4E 59 F7 F9&rbrace;
-                $c = "UVODFRYSIHLNWPEJXQZAKCBGMT"
-                
-                condition:
-                
-                $a or $b or $c
-                
-                &rbrace;`
-            },
-            {
-                id: 2,
-                title: 'Example Rule',
-                author: 'ChalkingCode',
-                description: `Just another example`,
-                rule: `rule ExampleRule
-                {
-                    strings:
-                        $my_text_string = "text here"
-                        $my_hex_string = { E2 34 A1 C8 23 FB }
-                
-                    condition:
-                        $my_text_string or $my_hex_string
-                }`
-            }
-      ]
+  state = {
+      adrules: []
   }
+
+  componentDidMount() {
+      fetch('https://django-yara-intel-app.herokuapp.com/api/rules/')
+          .then(response => response.json())
+          .then(data => {
+              this.setState({adrules: data});
+          });
+  }
+
+
 
   createNewAdrule = (adrule) => {
-      adrule.id = Math.floor(Math.random() * 1000);
-      this.setState({adrules: this.state.adrules.concat([adrule])});
-  }
+    fetch('https://django-yara-intel-app.herokuapp.com/api/rules/', {
+        method: 'POST',
+        headers: {
+                'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(adrule),
+    })
+    .then(response => response.json())
+    .then(adrule => {
+        this.setState({adrules: this.state.adrules.concat([adrule])});
+    });
+}
 
-  updateAdrule = (newAdrule) => {
+updateAdrule = (newAdrule) => {
+  fetch(`https://django-yara-intel-app.herokuapp.com/api/rules/${newAdrule.id}/`, {
+      method: 'PUT',
+      headers: {
+              'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newAdrule),
+  }).then(response => response.json())
+  .then(newAdrule => {
       const newAdrules = this.state.adrules.map(adrule => {
           if(adrule.id === newAdrule.id) {
-                return Object.assign({}, newAdrule)
+              return Object.assign({}, newAdrule)
           } else {
-                return adrule;
+              return adrule;
           }
       });
-
       this.setState({adrules: newAdrules});
-  }
+  });
+}
 
   deleteAdrule = (adruleId) => {
-      this.setState({adrules: this.state.adrules.filter(adrule => adrule.id !== adruleId)})
+    fetch(`https://django-yara-intel-app.herokuapp.com/api/rules/${adruleId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(() => {
+        this.setState({adrules: this.state.adrules.filter(adrule => adrule.id !== adruleId)})
+    });
   }
+
+
   render() {
       return (
           
@@ -89,6 +86,7 @@ class AdruleDashboard extends React.Component {
                 </Nav>
                 </Navbar>
             </div>
+            <br />
             <Alert variant="success">
               <Alert.Heading>Yara Intel</Alert.Heading>
               <p>
