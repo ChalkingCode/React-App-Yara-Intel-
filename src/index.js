@@ -86,13 +86,6 @@ updateAdrule = (newAdrule) => {
             </div>
             <br />
             <Alert variant="success">
-              <Alert.Heading>Yara Intel</Alert.Heading>
-              <p>
-                I created this app to show my knowledge in react and jsx. I will
-                Also be showing my knowledge of threat intel and VT hunting with Yara 
-                Rules. I hope you enjoy and happy hunting!
-              </p>
-              <hr />
               <h1>YARA in a nutshell</h1>
               <br />
               <p>
