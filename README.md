@@ -24,6 +24,12 @@ install dependencies and run
 
 Note see [Introduction to npm](https://nodejs.dev/learn/an-introduction-to-the-npm-package-manager)
 
+## Netlifly 
+
+this application can also be seen at https://threatintel-reactapp.netlify.app 
+
+The backend for this application is served on Heroku 
+
 ## Questions
 
 ###### Questions? If you have a question or would like to add feedback please contact me at skylarbarrowman@gmail.com. :)
