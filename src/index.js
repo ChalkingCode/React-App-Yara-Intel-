@@ -81,6 +81,9 @@ updateAdrule = (newAdrule) => {
               <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="https://github.com/ChalkingCode/React-App-Yara-Intel-">Code</Nav.Link>
+                <Nav.Link href="https://regex101.com/">Regex101</Nav.Link>
+                <Nav.Link href="https://gchq.github.io/CyberChef/">CyberChef</Nav.Link>
+                <Nav.Link href="https://www.virustotal.com/gui/home/upload">VirusTotal</Nav.Link>
                 </Nav>
                 </Navbar>
             </div>
